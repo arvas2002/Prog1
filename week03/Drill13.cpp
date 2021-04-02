@@ -1,5 +1,6 @@
 #include "Graph.h"
 #include "Simple_window.h"
+#include "fltk.h"
  //g++ Drill13.cpp Graph.cpp Window.cpp GUI.cpp Simple_window.cpp -o main `fltk-config --ldflags --use-images`
 
 
@@ -46,15 +47,36 @@ int main()
 	Image badge {Point{0,0},"badge.jpg"};
 	badge.set_mask(Point{0,0},100,100);
 	win.attach(badge);
-	badge.move(200,200);
-	/*for(int i=1;i<8;++i)
-		for(int j=1;j<8;++j)
+	//badge.move(200,200);
+	win.wait_for_button();
+	int y_mozog=100;
+	int x_mozog=100;
+	for(int i=0;i<8;++i)
+	{
+
+		if(i!=0)
 		{
-			badge.move(i*100,j*100);
+			badge.move(x_mozog,-700);
 			win.wait_for_button();
 		}
 
-*/
+		for(int j=1;j<8;++j)
+		{
+			if(j<8)
+			{			
+				x_mozog=0;
+				badge.move(x_mozog,y_mozog);
+				win.wait_for_button();
+			}
+			else {
+				badge.move(x_mozog,y_mozog);
+				win.wait_for_button();
+			}
+		}
+
+	}
+
+
 	win.wait_for_button();
-	//delete badge;
+
 }
